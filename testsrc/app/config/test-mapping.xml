@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE POWERMART SYSTEM "powrmart.dtd">
+<POWERMART>
+      <REPOSITORY NAME="RepositoryDev" CODEPAGE="Latin1">
+            <FOLDER NAME="DevFolder">
+                  <SOURCE NAME="Table1" DBDNAME="Server1Instance" DATABASETYPE="Sybase">
+                        <SOURCEFIELD NAME="field1" DATATYPE="varchar" PRECISION="10"/>
+                        <SOURCEFIELD NAME="field2" DATATYPE="varchar" PRECISION="10"/>
+                  </SOURCE>
+                  <TARGET NAME="STG_Table1" DATABASETYPE="ODBC">
+                        <TARGETFIELD NAME="field1" DATATYPE="varchar" PRECISION="10"/>
+                  </TARGET>
+                  <MAPPING NAME="TestMapping">
+                        <TRANSFORMATION NAME="SQ_Table1" DESCRIPTION="SQ_Table1" TYPE="Source Qualifier" REUSABLE="NO">
+                              <TRANSFORMFIELD NAME="field1" DATATYPE="STRING" PORTTYPE="INPUT/OUTPUT" PRECISION="16"/>
+                        </TRANSFORMATION>
+                        <INSTANCE NAME="Table1" TYPE="SOURCE" TRANSFORMATION_TYPE="Source Definition" TRANSFORMATION_NAME="Table1" DBDNAME="Server1Instance"/>
+                        <INSTANCE NAME="SQ_Table1" TYPE="TRANSFORMATION" TRANSFORMATION_TYPE="Source Qualifier" TRANSFORMATION_NAME="SQ_Table1">
+                              <ASSOCIATED_SOURCE_INSTANCE NAME="SQ_Table1"/>
+                        </INSTANCE>
+                        <INSTANCE NAME="STG_Table1" TYPE="TARGET" TRANSFORMATION_TYPE="Target Definition" TRANSFORMATION_NAME="STG_Table1"/>
+                        <CONNECTOR FROMINSTANCE="Table1" FROMINSTANCETYPE="Source Definition" FROMFIELD="field1" TOINSTANCE="SQ_Table1" TOINSTANCETYPE="Source Qualifier" TOFIELD="field1"/>
+                        <CONNECTOR FROMINSTANCE="SQ_Table1" FROMINSTANCETYPE="Source Qualifier" FROMFIELD="field1" TOINSTANCE="STG_Table1" TOINSTANCETYPE="Target Definition" TOFIELD="field1"/>
+                  </MAPPING>
+            </FOLDER>
+      </REPOSITORY>
+</POWERMART>

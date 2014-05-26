@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT CustomProperty EMPTY>
+<!ATTLIST CustomProperty
+	Name CDATA #REQUIRED
+	Value CDATA #REQUIRED
+	isParameterized CDATA #IMPLIED
+>
+<!ELEMENT Graph (Parameters?, MappingVariable*, Node+, Link+)>
+
+<!ATTLIST Graph
+	Name CDATA #REQUIRED
+	Description CDATA #REQUIRED
+>
+
+<!ELEMENT Link (Rule+)>
+
+<!ELEMENT MappingVariable EMPTY>
+
+<!ELEMENT Parameters (Parameter*)>
+
+<!ELEMENT Parameter EMPTY>
+
+<!ATTLIST Parameter
+    Name CDATA #REQUIRED
+    Type CDATA #REQUIRED
+>
+
+<!ATTLIST MappingVariable
+    Type CDATA #REQUIRED
+    DataType CDATA #REQUIRED
+    Prec CDATA #IMPLIED
+    Scale CDATA #IMPLIED
+    Name CDATA #REQUIRED
+	Agg CDATA #IMPLIED
+	InitVal CDATA #REQUIRED
+	Desc CDATA #IMPLIED
+>
+
+<!ATTLIST Link
+	Name CDATA #REQUIRED
+	FromNameID CDATA #REQUIRED
+	ToNameID CDATA #REQUIRED
+	MasterInputSet (False | True) #IMPLIED
+	isParameterized (False | True) #IMPLIED
+>
+<!ELEMENT Node (CustomProperty*)>
+<!ATTLIST Node
+	NameID CDATA #REQUIRED
+	Name CDATA #REQUIRED
+	Type CDATA #REQUIRED
+	InstanceName CDATA #REQUIRED
+    Description CDATA #IMPLIED
+    isParameterized CDATA #IMPLIED
+>
+
+<!ELEMENT Rule EMPTY>
+<!ATTLIST Rule
+	Text CDATA #REQUIRED
+    FromGroup CDATA #IMPLIED
+    ToGroup CDATA #IMPLIED
+	isParameterized (False | True) #IMPLIED
+>

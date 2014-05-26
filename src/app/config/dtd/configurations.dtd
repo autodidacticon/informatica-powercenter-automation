@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT Configurations (MapGen, ETLStencil)>
+
+<!ELEMENT MapGen (EnvironmentVariable*)>
+<!ELEMENT EnvironmentVariable EMPTY>
+<!ATTLIST EnvironmentVariable
+	Name CDATA #REQUIRED
+	Value CDATA #REQUIRED
+>
+
+<!ELEMENT CustomProperty EMPTY>
+<!ATTLIST CustomProperty
+	Name CDATA #REQUIRED
+	Value CDATA #REQUIRED
+	Visible CDATA #REQUIRED
+>
+<!ELEMENT ETLStencil (Master+)>
+<!ATTLIST ETLStencil
+	ImageWidthFormula CDATA #REQUIRED
+	ImageHeightFormula CDATA #REQUIRED
+>
+
+<!ELEMENT Master (CustomProperty+)>
+<!ATTLIST Master
+	Name CDATA #REQUIRED
+>

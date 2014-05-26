@@ -1,0 +1,383 @@
+<binding>	
+	<format type="java.lang.Boolean" 
+		serializer="net.orangemile.informatica.powercenter.jibx.Conversion.serializeYesNo"
+		deserializer="net.orangemile.informatica.powercenter.jibx.Conversion.deserializeYesNo"/>
+		
+	<format type="net.orangemile.informatica.powercenter.domain.constant.PortType" 
+		serializer="net.orangemile.informatica.powercenter.jibx.Conversion.serializePortType"
+		deserializer="net.orangemile.informatica.powercenter.jibx.Conversion.deserializePortType" />
+		
+	<mapping name="POWERMART" class="net.orangemile.informatica.powercenter.domain.Powermart" ordered="false">
+		<value style="attribute" name="CREATION_DATE" field="creationDate" usage="optional"/>
+		<value style="attribute" name="REPOSITORY_VERSION" field="repositoryVersion" usage="optional"/>		
+		<collection field="repositoryList" item-type="net.orangemile.informatica.powercenter.domain.Repository" 
+			type="java.util.ArrayList" usage="optional" />
+	</mapping>
+
+	<mapping name="REPOSITORY" class="net.orangemile.informatica.powercenter.domain.Repository" ordered="false">
+		<value style="attribute" name="NAME" field="name" usage="optional"/>
+		<value style="attribute" name="DATABASETYPE" field="databaseType" usage="optional" />
+		<value style="attribute" name="CODEPAGE" field="codePage" usage="optional" />
+		<value style="attribute" name="VERSION" field="version" usage="optional" />
+		<value style="attribute" name="PARENTREPOSITORY" field="parentRepository" usage="optional"/>
+		<collection field="folderList" item-type="net.orangemile.informatica.powercenter.domain.Folder" 
+			type="java.util.ArrayList" usage="optional" />
+	</mapping>
+
+	<mapping name="FOLDER" class="net.orangemile.informatica.powercenter.domain.Folder" ordered="false">
+		<value style="attribute" name="NAME" field="name" usage="optional"/>
+		<value style="attribute" name="DESCRIPTION" field="description" usage="optional"/>
+		<value style="attribute" name="SHARED" field="shared" usage="optional"/>
+		<value style="attribute" name="OWNER" field="owner" usage="optional"/>
+		<value style="attribute" name="GROUP" field="group" usage="optional"/>
+		<value style="attribute" name="PERMISSIONS" field="permissions" usage="optional"/>
+		<value style="attribute" name="UUID" field="uuid" usage="optional"/>
+		<collection field="folderVersionList" item-type="net.orangemile.informatica.powercenter.domain.FolderVersion" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="sourceList" item-type="net.orangemile.informatica.powercenter.domain.Source" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="targetList" item-type="net.orangemile.informatica.powercenter.domain.Target" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="transformationList" item-type="net.orangemile.informatica.powercenter.domain.Transformation" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="mappingList" item-type="net.orangemile.informatica.powercenter.domain.Mapping" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="shortcutList" item-type="net.orangemile.informatica.powercenter.domain.Shortcut" 
+			type="java.util.ArrayList" usage="optional" />
+	</mapping>
+
+	<mapping name="FOLDERVERSION" class="net.orangemile.informatica.powercenter.domain.FolderVersion" ordered="false">
+		<value style="attribute" name="NAME" field="name" usage="optional"/>
+		<value style="attribute" name="DESCRIPTION" field="description" usage="optional"/>		
+	</mapping>
+
+	<mapping name="SOURCE" class="net.orangemile.informatica.powercenter.domain.Source" ordered="false">
+		<value style="attribute" name="NAME" field="name" usage="optional" />
+		<value style="attribute" name="DBDNAME" field="dbdName" usage="optional" />
+		<value style="attribute" name="BUSINESSNAME" field="businessName" usage="optional" />
+		<value style="attribute" name="DESCRIPTION" field="description" usage="optional" />
+		<value style="attribute" name="OBJECTVERSION" field="objectVersion" usage="optional" />
+		<value style="attribute" name="OWNERNAME" field="ownerName" usage="optional" />
+		<value style="attribute" name="IBMCOMP" field="ibmComp" usage="optional" />
+		<value style="attribute" name="DATABASETYPE" field="databaseType" usage="optional" />
+		<value style="attribute" name="DATABASE_SUBTYPE" field="databaseSubType" usage="optional" />
+		<value style="attribute" name="VERSIONNUMBER" field="versionNumber" usage="optional" />
+		<value style="attribute" name="CRCVALUE" field="crcValue" usage="optional" />
+		<collection field="groupList" item-type="net.orangemile.informatica.powercenter.domain.Group" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="tableAttributeList" item-type="net.orangemile.informatica.powercenter.domain.TableAttribute" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="sourceFieldList" item-type="net.orangemile.informatica.powercenter.domain.SourceField" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="metaDataExtensionList" item-type="net.orangemile.informatica.powercenter.domain.MetaDataExtension" 
+			type="java.util.ArrayList" usage="optional" />
+	</mapping>	
+
+	<mapping name="SOURCEFIELD" class="net.orangemile.informatica.powercenter.domain.SourceField" ordered="false">
+		<value style="attribute" name="NAME" field="name" usage="optional" />
+		<value style="attribute" name="BUSINESSNAME" field="businessName" usage="optional" />
+		<value style="attribute" name="DESCRIPTION" field="description" usage="optional" />
+		<value style="attribute" name="DATATYPE" field="dataType" usage="optional" />
+		<value style="attribute" name="KEYTYPE" field="keyType" usage="optional" />
+		<value style="attribute" name="PRECISION" field="precision" usage="optional" />
+		<value style="attribute" name="SCALE" field="scale" usage="optional" />
+		<value style="attribute" name="NULLABLE" field="nullable" usage="optional" />
+		<value style="attribute" name="USAGE" field="usage" usage="optional" />
+		<value style="attribute" name="USAGE_FLAGS" field="usageFlags" usage="optional" />
+		<value style="attribute" name="LEVEL" field="level" usage="optional" />
+		<value style="attribute" name="FIELDTYPE" field="fieldType" usage="optional" />
+		<value style="attribute" name="PICTURETEXT" field="pictureText" usage="optional" />
+		<value style="attribute" name="OCCURS" field="occurs" usage="optional" />
+		<value style="attribute" name="REDEFINES" field="redefines" usage="optional" />
+		<value style="attribute" name="REFERENCEDTABLE" field="referencedTable" usage="optional" />
+		<value style="attribute" name="REFERENCEDFIELD" field="referencedField" usage="optional" />
+		<value style="attribute" name="REFERENCEDDBD" field="referencedDbd" usage="optional" />
+		<value style="attribute" name="OFFSET" field="offset" usage="optional" />
+		<value style="attribute" name="LENGTH" field="length" usage="optional" />
+		<value style="attribute" name="PHYSICALOFFSET" field="physicalOffset" usage="optional" />
+		<value style="attribute" name="PHYSICALLENGTH" field="physicalLength" usage="optional" />
+		<value style="attribute" name="FIELDNUMBER" field="fieldNumber" usage="optional" />
+		<value style="attribute" name="HIDDEN" field="hidden" usage="optional" />
+		<value style="attribute" name="GROUP" field="group" usage="optional" />
+		<value style="attribute" name="SHIFTSTATE" field="shiftState" usage="optional" />
+		<collection field="sourceFieldList" item-type="net.orangemile.informatica.powercenter.domain.SourceField" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="fieldAttributeList" item-type="net.orangemile.informatica.powercenter.domain.FieldAttribute" 
+			type="java.util.ArrayList" usage="optional" />
+	</mapping>
+
+	<mapping name="TABLEATTRIBUTE" class="net.orangemile.informatica.powercenter.domain.TableAttribute" ordered="false">
+		<value style="attribute" name="NAME" field="name" usage="optional" />
+		<value style="attribute" name="VALUE" field="value" usage="optional" />
+	</mapping>
+
+	<mapping name="FIELDATTRIBUTE" class="net.orangemile.informatica.powercenter.domain.FieldAttribute" ordered="false">
+		<value style="attribute" name="NAME" field="name" usage="optional" />
+		<value style="attribute" name="VALUE" field="value" usage="optional" />
+	</mapping>
+	
+	<mapping name="GROUP" class="net.orangemile.informatica.powercenter.domain.Group" ordered="false">
+		<value style="attribute" name="NAME" field="name" usage="optional" />
+		<value style="attribute" name="DESCRIPTION" field="description" usage="optional" />
+		<value style="attribute" name="ORDER" field="order" usage="optional" />
+		<value style="attribute" name="TYPE" field="type" usage="optional" />
+		<value style="attribute" name="EXPRESSION" field="expression" usage="optional" />
+	</mapping>	
+
+	<mapping name="METADATAEXTENSION" class="net.orangemile.informatica.powercenter.domain.MetaDataExtension" ordered="false">
+		<value style="attribute" name="NAME" field="name" usage="optional" />
+		<value style="attribute" name="VENDORNAME" field="vendorName" usage="optional" />
+		<value style="attribute" name="DOMAINNAME" field="domainName" usage="optional" />
+		<value style="attribute" name="DATATYPE" field="dataType" usage="optional" />
+		<value style="attribute" name="VALUE" field="value" usage="optional" />
+		<value style="attribute" name="MAXLENGTH" field="maxLength" usage="optional" />
+		<value style="attribute" name="DESCRIPTION" field="description" usage="optional" />
+		<value style="attribute" name="ISSHAREREAD" field="isShareRead" usage="optional"
+					serializer="net.orangemile.informatica.powercenter.jibx.Conversion.serializeYesNo"
+					deserializer="net.orangemile.informatica.powercenter.jibx.Conversion.deserializeYesNo" />
+		<value style="attribute" name="ISSHAREWRITE" field="isShareWrite" usage="optional"
+					serializer="net.orangemile.informatica.powercenter.jibx.Conversion.serializeYesNo"
+					deserializer="net.orangemile.informatica.powercenter.jibx.Conversion.deserializeYesNo" />
+		<value style="attribute" name="ISCLIENTVISIBLE" field="isClientVisible" usage="optional"
+					serializer="net.orangemile.informatica.powercenter.jibx.Conversion.serializeYesNo"
+					deserializer="net.orangemile.informatica.powercenter.jibx.Conversion.deserializeYesNo" />		
+		<value style="attribute" name="ISCLIENTEDITABLE" field="isClientEditable" usage="optional" 
+					serializer="net.orangemile.informatica.powercenter.jibx.Conversion.serializeYesNo"
+					deserializer="net.orangemile.informatica.powercenter.jibx.Conversion.deserializeYesNo" />
+		<value style="attribute" name="ISREUSABLE" field="isReusable" usage="optional" 
+					serializer="net.orangemile.informatica.powercenter.jibx.Conversion.serializeYesNo"
+					deserializer="net.orangemile.informatica.powercenter.jibx.Conversion.deserializeYesNo" />
+	</mapping>
+	
+	<mapping name="TARGET" class="net.orangemile.informatica.powercenter.domain.Target" ordered="false">
+		<value style="attribute" name="NAME" field="name" usage="optional" />
+		<value style="attribute" name="BUSINESSNAME" field="businessName" usage="optional" />
+		<value style="attribute" name="DESCRIPTION" field="description" usage="optional" />
+		<value style="attribute" name="OBJECTVERSION" field="objectVersion" usage="optional" />
+		<value style="attribute" name="CONSTRAINT" field="constraint" usage="optional" />
+		<value style="attribute" name="TABLEOPTIONS" field="tableOptions" usage="optional" />
+		<value style="attribute" name="TABLETYPE" field="tableType" usage="optional" />
+		<value style="attribute" name="DATABASETYPE" field="databaseType" usage="optional" />
+		<value style="attribute" name="VERSIONNUMBER" field="versionNumber" usage="optional" />
+		<value style="element" name="CRCVALUE" field="crcValue" usage="optional" />
+		<collection field="keywordList" item-type="net.orangemile.informatica.powercenter.domain.Keyword" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="targetFieldList" item-type="net.orangemile.informatica.powercenter.domain.TargetField" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="tableAttributeList" item-type="net.orangemile.informatica.powercenter.domain.TableAttribute" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="metaDataExtensionList" item-type="net.orangemile.informatica.powercenter.domain.MetaDataExtension" 
+			type="java.util.ArrayList" usage="optional" />
+	</mapping>
+	
+	<mapping name="KEYWORD" class="net.orangemile.informatica.powercenter.domain.Keyword" ordered="false">
+		<value style="attribute" name="NAME" field="name" usage="optional" />
+	</mapping>
+	
+	<mapping name="TARGETFIELD" class="net.orangemile.informatica.powercenter.domain.TargetField" ordered="false">
+		<value style="attribute" name="NAME" field="name" usage="optional" />
+		<value style="attribute" name="BUSINESSNAME" field="businessName" usage="optional" />
+		<value style="attribute" name="DESCRIPTION" field="description" usage="optional" />
+		<value style="attribute" name="DATATYPE" field="dataType" usage="optional" />
+		<value style="attribute" name="KEYTYPE" field="keyType" usage="optional" />
+		<value style="attribute" name="PRECISION" field="precision" usage="optional" />
+		<value style="attribute" name="SCALE" field="scale" usage="optional" />
+		<value style="attribute" name="FIELDNUMBER" field="fieldNumber" usage="optional" />
+		<value style="attribute" name="NULLABLE" field="nullable" usage="optional" />
+		<value style="attribute" name="PICTURETEXT" field="pictureText" usage="optional" />
+		<value style="attribute" name="REFERENCEDTABLE" field="referencedTable" usage="optional" />
+		<value style="attribute" name="REFERENCEDFIELD" field="referencedField" usage="optional" />
+		<value style="attribute" name="GROUP" field="group" usage="optional" />
+		<value style="attribute" name="ISFILENAMEFIELD" field="isFileNameField" usage="optional" />
+		<collection field="fieldAttributeList" item-type="net.orangemile.informatica.powercenter.domain.FieldAttribute" 
+			type="java.util.ArrayList" usage="optional" />
+	</mapping>
+	
+	<mapping name="TRANSFORMATION" class="net.orangemile.informatica.powercenter.domain.Transformation" ordered="false">
+		<value style="attribute" name="NAME" field="name" usage="optional" />
+		<value style="attribute" name="DESCRIPTION" field="description" usage="optional" />
+   		<value style="attribute" name="TYPE" field="type" usage="optional" />
+    	<value style="attribute" name="OBJECTVERSION" field="objectVersion" usage="optional" />
+    	<value style="attribute" name="REUSABLE" field="reusable" usage="optional" 
+					serializer="net.orangemile.informatica.powercenter.jibx.Conversion.serializeYesNo"
+					deserializer="net.orangemile.informatica.powercenter.jibx.Conversion.deserializeYesNo" />    		
+    	<value style="attribute" name="ISVSAM_NORMALIZER" field="isVsamNormalizer" usage="optional" />
+    	<value style="attribute" name="REF_SOURCE_NAME" field="refSourceName" usage="optional" />
+    	<value style="attribute" name="REF_DBD_NAME" field="refDbdName" usage="optional" />
+    	<value style="attribute" name="TEMPLATEID" field="templateId" usage="optional" />
+    	<value style="attribute" name="TEMPLATENAME" field="templateName" usage="optional" />
+    	<value style="attribute" name="PARENT" field="parent" usage="optional" />
+    	<value style="attribute" name="PARENT_TYPE" field="parentType" usage="optional" />
+    	<value style="attribute" name="VERSIONNUMBER" field="versionNumber" usage="optional" />
+    	<value style="attribute" name="CRCVALUE" field="crcValue" usage="optional" />
+		<collection field="groupList" item-type="net.orangemile.informatica.powercenter.domain.Group" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="sourceFieldList" item-type="net.orangemile.informatica.powercenter.domain.SourceField" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="transformFieldList" item-type="net.orangemile.informatica.powercenter.domain.TransformField" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="tableAttributeList" item-type="net.orangemile.informatica.powercenter.domain.TableAttribute" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="initPropList" item-type="net.orangemile.informatica.powercenter.domain.InitProp" 
+			type="java.util.ArrayList" usage="optional" />	
+		<collection field="metaDataExtensionList" item-type="net.orangemile.informatica.powercenter.domain.MetaDataExtension" 
+			type="java.util.ArrayList" usage="optional" />			
+	</mapping>
+	
+	<mapping name="TRANSFORMFIELD" class="net.orangemile.informatica.powercenter.domain.TransformField" ordered="false">
+		<value style="attribute" name="NAME" field="name" usage="optional" />
+		<value style="attribute" name="DESCRIPTION" field="description" usage="optional" />
+		<value style="attribute" name="DATATYPE" field="dataType" usage="optional" />
+		<value style="attribute" name="PORTTYPE" field="portType" usage="optional" 
+			serializer="net.orangemile.informatica.powercenter.jibx.Conversion.serializePortType"
+			deserializer="net.orangemile.informatica.powercenter.jibx.Conversion.deserializePortType"/>
+		<value style="attribute" name="PRECISION" field="precision" usage="optional" />
+		<value style="attribute" name="SCALE" field="scale" usage="optional" />
+		<value style="attribute" name="PICTURETEXT" field="pictureText" usage="optional" />
+		<value style="attribute" name="DEFAULTVALUE" field="defaultValue" usage="optional" />
+		<value style="attribute" name="EXPRESSION" field="expression" usage="optional" />
+		<value style="attribute" name="EXPRESSIONTYPE" field="expressionType" usage="optional" />
+		<value style="attribute" name="EXPRESSION_DESCRIPTION" field="expressionDescription" usage="optional" />
+		<value style="attribute" name="FIELDNUMBER" field="fieldNumber" usage="optional" />
+		<value style="attribute" name="REF_SOURCE_FIELD" field="refSourceField" usage="optional" />
+		<value style="attribute" name="MAPPLETGROUP" field="mappletGroup" usage="optional" />
+		<value style="attribute" name="REF_FIELD" field="refField" usage="optional" />
+		<value style="attribute" name="REF_TRANSFORMATION" field="refTransformation" usage="optional" />
+		<value style="attribute" name="REF_INSTANCETYPE" field="refInstanceType" usage="optional" />
+		<value style="attribute" name="SEQUENCE_GENERATOR_VALUE" field="sequenceGeneratorValue" usage="optional" />
+		<value style="attribute" name="GROUP" field="group" usage="optional" />
+		<value style="attribute" name="OUTPUTGROUP" field="outputGroup" usage="optional" />
+		<value style="attribute" name="ISSORTKEY" field="isSortKey" usage="optional" 
+					serializer="net.orangemile.informatica.powercenter.jibx.Conversion.serializeYesNo"
+					deserializer="net.orangemile.informatica.powercenter.jibx.Conversion.deserializeYesNo" />
+		<value style="attribute" name="SORTDIRECTION" field="sortDirection" usage="optional" />
+		<value style="attribute" name="IGNORE_NULL_INPUTS" field="ignoreNullInputs" usage="optional" 
+					serializer="net.orangemile.informatica.powercenter.jibx.Conversion.serializeYesNo"
+					deserializer="net.orangemile.informatica.powercenter.jibx.Conversion.deserializeYesNo" />
+		<value style="attribute" name="IGNORE_IN_COMPARE" field="ignoreInCompare" usage="optional" 
+					serializer="net.orangemile.informatica.powercenter.jibx.Conversion.serializeYesNo"
+					deserializer="net.orangemile.informatica.powercenter.jibx.Conversion.deserializeYesNo" />
+	</mapping>
+
+	<mapping name="TRANSFORMFIELDATTR" class="net.orangemile.informatica.powercenter.domain.TransformFieldAttr" ordered="false">
+		<value style="attribute" name="NAME" field="name" usage="optional" />	
+		<value style="attribute" name="VALUE" field="value" usage="optional" />			
+	</mapping>
+
+	<mapping name="INITPROP" class="net.orangemile.informatica.powercenter.domain.InitProp" ordered="false">
+		<value style="attribute" name="NAME" field="name" usage="optional" />	
+		<value style="attribute" name="VALUE" field="value" usage="optional" />	
+		<value style="attribute" name="DESCRIPTION" field="description" usage="optional" />	
+		<value style="attribute" name="USERDEFINED" field="userDefined" usage="optional" />	
+	</mapping>
+
+	<mapping name="MAPPING" class="net.orangemile.informatica.powercenter.domain.Mapping" ordered="false">
+    	<value style="attribute" name="NAME" field="name" usage="optional" />	
+	    <value style="attribute" name="DESCRIPTION" field="description" usage="optional" />	
+    	<value style="attribute" name="OBJECTVERSION" field="objectVersion" usage="optional" />	
+	    <value style="attribute" name="ISVALID" field="isValid" usage="optional" />	
+    	<value style="attribute" name="ISPROFILEMAPPING" field="isProfileMapping" usage="optional"
+					serializer="net.orangemile.informatica.powercenter.jibx.Conversion.serializeYesNo"
+					deserializer="net.orangemile.informatica.powercenter.jibx.Conversion.deserializeYesNo" />
+	    <value style="attribute" name="VERSIONNUMBER" field="versionNumber" usage="optional" />	
+	    <value style="attribute" name="CRCVALUE" field="crcValue" usage="optional" />	
+		<collection field="transformationList" item-type="net.orangemile.informatica.powercenter.domain.Transformation" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="instanceList" item-type="net.orangemile.informatica.powercenter.domain.Instance" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="connectorList" item-type="net.orangemile.informatica.powercenter.domain.Connector" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="mapDependencyList" item-type="net.orangemile.informatica.powercenter.domain.MapDependency" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="targetLoadOrderList" item-type="net.orangemile.informatica.powercenter.domain.TargetLoadOrder" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="mappingVariableList" item-type="net.orangemile.informatica.powercenter.domain.MappingVariable" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="erpInfoList" item-type="net.orangemile.informatica.powercenter.domain.sap.ErpInfo" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="metaDataExtensionList" item-type="net.orangemile.informatica.powercenter.domain.MetaDataExtension" 
+			type="java.util.ArrayList" usage="optional" />
+	</mapping>
+
+	<mapping name="INSTANCE" class="net.orangemile.informatica.powercenter.domain.Instance" ordered="false">
+	    <value style="attribute" name="NAME" field="name" usage="optional" />
+	    <value style="attribute" name="DESCRIPTION" field="description" usage="optional" />
+	    <value style="attribute" name="TYPE" field="type" usage="optional" />
+	    <value style="attribute" name="REUSABLE" field="reusable" usage="optional"
+					serializer="net.orangemile.informatica.powercenter.jibx.Conversion.serializeYesNo"
+					deserializer="net.orangemile.informatica.powercenter.jibx.Conversion.deserializeYesNo" />	    
+	    <value style="attribute" name="TRANSFORMATION_TYPE" field="transformationType" usage="optional" />
+	    <value style="attribute" name="TRANSFORMATION_NAME" field="transformationName" usage="optional" />
+	    <value style="attribute" name="DBDNAME" field="dbdName" usage="optional" />
+	    <value style="attribute" name="ASSOCIATED_DSQ" field="associatedDsq" usage="optional" />
+	    <value style="attribute" name="ASSOCIATED_DSQ_TYPE" field="associatedDsqType" usage="optional" />
+		<collection field="tableAttributeList" item-type="net.orangemile.informatica.powercenter.domain.TableAttribute" 
+			type="java.util.ArrayList" usage="optional" />
+		<collection field="initPropList" item-type="net.orangemile.informatica.powercenter.domain.InitProp" 
+			type="java.util.ArrayList" usage="optional" />			
+		<collection field="associatedSourceInstanceList" item-type="net.orangemile.informatica.powercenter.domain.AssociatedSourceInstance" 
+			type="java.util.ArrayList" usage="optional" />
+	</mapping>
+
+	<mapping name="ASSOCIATED_SOURCE_INSTANCE" class="net.orangemile.informatica.powercenter.domain.AssociatedSourceInstance" ordered="false">
+	    <value style="attribute" name="NAME" field="name" usage="optional" />
+	</mapping>
+
+	<mapping name="CONNECTOR" class="net.orangemile.informatica.powercenter.domain.Connector" ordered="false">
+    	<value style="attribute" name="FROMINSTANCE" field="fromInstance" usage="optional" />
+    	<value style="attribute" name="FROMINSTANCETYPE" field="fromInstanceType" usage="optional" />
+    	<value style="attribute" name="FROMFIELD" field="fromField" usage="optional" />
+    	<value style="attribute" name="TOINSTANCE" field="toInstance" usage="optional" />
+    	<value style="attribute" name="TOINSTANCETYPE" field="toInstanceType" usage="optional" />
+    	<value style="attribute" name="TOFIELD" field="toField" usage="optional" />
+	</mapping>
+	
+	<mapping name="MAPDEPENDENCY" class="net.orangemile.informatica.powercenter.domain.MapDependency" ordered="false">
+    	<value style="attribute" name="FROMINSTANCE" field="fromInstance" usage="optional" />
+		<value style="attribute" name="FROMINSTANCETYPE" field="fromInstanceType" usage="optional" />
+		<value style="attribute" name="TOINSTANCE" field="toInstance" usage="optional" />
+		<value style="attribute" name="TOINSTANCETYPE" field="toInstanceType" usage="optional" />
+	</mapping>	
+
+	<mapping name="TARGETLOADORDER" class="net.orangemile.informatica.powercenter.domain.TargetLoadOrder" ordered="false">
+		<value style="attribute" name="TARGETINSTANCE" field="targetInstance" usage="optional" />
+		<value style="attribute" name="ORDER" field="order" usage="optional" />    		    
+	</mapping>	
+
+	<mapping name="SHORTCUT" class="net.orangemile.informatica.powercenter.domain.Shortcut" ordered="false">
+    	<value style="attribute" name="NAME" field="name" usage="optional" />				
+		<value style="attribute" name="DBDNAME" field="dbdName" usage="optional" />
+    	<value style="attribute" name="REPOSITORYNAME" field="repositoryName" usage="optional" />
+	    <value style="attribute" name="REFOBJECTNAME" field="refObjectName" usage="optional" />
+    	<value style="attribute" name="REFERENCEDDBD" field="referencedDbd" usage="optional" />
+	    <value style="attribute" name="REFERENCETYPE" field="referenceType" usage="optional" />
+    	<value style="attribute" name="OBJECTTYPE" field="objectType" usage="optional" />
+	    <value style="attribute" name="OBJECTSUBTYPE" field="objectSubType" usage="optional" />
+	    <value style="attribute" name="FOLDERNAME" field="folderName" usage="optional" />
+    	<value style="attribute" name="FOLDERVERSIONNAME" field="folderVersionName" usage="optional" />
+	    <value style="attribute" name="COMMENTS" field="comments" usage="optional" />
+    	<value style="attribute" name="VERSIONNUMBER" field="versionNumber" usage="optional" />
+    	<value style="attribute" name="TEMPLATEID" field="templateId" usage="optional" />
+    </mapping>
+    
+    <mapping name="MAPPINGVARIABLE" class="net.orangemile.informatica.powercenter.domain.MappingVariable" ordered="false">
+		<value style="attribute" name="NAME" field="name" usage="optional" />
+		<value style="attribute" name="DESCRIPTION" field="description" usage="optional" />
+		<value style="attribute" name="DATATYPE" field="dataType" usage="optional" />
+		<value style="attribute" name="PRECISION" field="precision" usage="optional" />
+		<value style="attribute" name="SCALE" field="scale" usage="optional" />
+		<value style="attribute" name="DEFAULTVALUE" field="defaultValue" usage="optional" />
+		<value style="attribute" name="AGGFUNCTION" field="aggFunction" usage="optional" />
+		<value style="attribute" name="USERDEFINED" field="userDefined" usage="optional"
+					serializer="net.orangemile.informatica.powercenter.jibx.Conversion.serializeYesNo"
+					deserializer="net.orangemile.informatica.powercenter.jibx.Conversion.deserializeYesNo" />		
+		<value style="attribute" name="ISPARAM" field="isParam" usage="optional"
+					serializer="net.orangemile.informatica.powercenter.jibx.Conversion.serializeYesNo"
+					deserializer="net.orangemile.informatica.powercenter.jibx.Conversion.deserializeYesNo" />		
+    </mapping>
+    
+    <mapping name="ERPINFO" class="net.orangemile.informatica.powercenter.domain.sap.ErpInfo" ordered="false">
+    </mapping>
+
+       
+</binding>

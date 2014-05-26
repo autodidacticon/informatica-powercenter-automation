@@ -1,0 +1,77 @@
+<project name="orangemile-informatica" default="jar" basedir=".">
+
+    <!-- properties -->	
+    <property name="app.name" value="orangemile-informatica" />
+	
+    <property name="lib.dir" value="lib" />
+    <property name="build.dir" value="build/app/java" />
+    <property name="dist" value="dist" />
+    <property name="doc.dir" value="javadoc" />
+    
+    <property name="app.dir" value="src/app" />
+    <property name="src.app.java" value="src/app/java" />
+    <property name="build.dir.app" value="${build.dir}/app" />
+    <property name="config.app.dir" value="${app.dir}/config" />
+
+	
+    <!-- classpath -->
+    <path id="classpath.compile">
+      	<fileset dir="${lib.dir}">
+        	<include name="**/*.jar"/>
+       		<include name="**/*.zip"/>
+      	</fileset>
+    </path>
+	
+     <!-- task definitions -->
+    <taskdef name="bind" classname="org.jibx.binding.ant.CompileTask" classpathref="classpath.compile" />
+	
+	<!-- jibx binding -->
+    <target name="jibx-binding">
+        <bind verbose="false" binding="${config.app.dir}/jibx/binding.xml" >
+            <classpath>
+                <pathelement path="${build.dir}"/>
+	    </classpath>
+        </bind>
+    </target>
+
+
+    <!-- clean -->	
+    <target name="clean">
+        <delete dir="${build.dir}" />
+    </target>
+
+
+    <!-- compile -->
+    <target name="compile" depends="">
+        <mkdir dir="${build.dir}" />
+    	<javac srcdir="${src.app.java}" destdir="${build.dir}" debug="true" deprecation="true">
+            <classpath refid="classpath.compile" />
+        </javac>
+    </target>
+
+
+    <!-- jar -->
+    <target name="jar" depends="compile, jibx-binding">
+        <mkdir dir="${dist}" />
+    	<tstamp />
+        <jar destfile="${dist}/${app.name}-1.0.0.jar" basedir="${build.dir}" includes="**/*.*">
+            <manifest>
+                <attribute name="Build-Time" value="${DSTAMP} ${TSTAMP}" />
+            </manifest>
+        </jar>
+        <zip destfile="${dist}/${app.name}-src-1.0.0.zip" basedir="${src.app.java}" includes="**/*.*" excludes="CVS" />
+    </target>
+
+
+    <!-- javadoc -->
+    <target name="javadoc">
+        <mkdir dir="${doc.dir}" />
+        <javadoc destdir="${doc.dir}" private="false" 
+        	packagenames="net.orangemile.*" 
+        	additionalparam="-breakiterator" 
+        	windowtitle="OrangeMile Informatica" verbose="true">
+            <fileset dir="${src.app.java}" />
+            <classpath refid="classpath.compile" />
+        </javadoc>
+    </target>
+</project>
