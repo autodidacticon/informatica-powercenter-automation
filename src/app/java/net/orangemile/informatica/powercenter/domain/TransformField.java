@@ -36,24 +36,160 @@ public class TransformField implements Field, Cloneable {
     
     public TransformField() {}
     
-    public TransformField(Field f) {
+    
+    public TransformField( String name, String dataType, int precision, int fieldNumber ) {
+    	this.name = name;
+    	this.dataType = dataType;
+    	this.precision = precision;
+    	this.fieldNumber = fieldNumber;
+    }
+	/**
+	 * duplicates field with port type INPUT_OUTPUT
+	 */
+    public TransformField(TransformField f) {
     	this.name = f.getName();
     	this.dataType =  f.getDataType();
     	this.precision = f.getPrecision();
     	this.scale = f.getScale();
-    	this.portType = PortType.INPUT_OUTPUT;
+    	this.portType = f.getPortType();//PortType.INPUT_OUTPUT;
+    	if( f.hasRefField() )
+    		this.refField = f.getRefField();
+    	if( f.hasGroup())
+    		this.group = f.getGroup();
+    	if ( f.hasExpression())
+    		this.setExpression(f.getExpression());
+    	this.fieldNumber = f.fieldNumber;
     }
     
+    
+	/**
+	 * duplicates field with port type INPUT_OUTPUT
+	 * and datatype
+	 */
+    public TransformField(TransformField f, String datatype) {
+    	this.name = f.getName();
+    	this.dataType =  f.getDataType();
+    	this.precision = f.getPrecision();
+    	this.scale = f.getScale();
+    	this.portType = f.getPortType();//PortType.INPUT_OUTPUT;
+    	if( f.hasRefField() )
+    		this.refField = f.getRefField();
+    	if( f.hasGroup())
+    		this.group = f.getGroup();
+    	if ( f.hasExpression())
+    		this.setExpression(f.getExpression());
+    	setDataType(datatype);
+    }
+    
+    /**
+     * returns true if a field has an expression
+     * @return boolean
+     */
+    private boolean hasExpression() {
+		if(this.expression == null)
+			return false;
+		else if(this.expression.isEmpty())
+			return false;
+		else return true;
+	}
+
+	/**
+     * returns true if field has a group
+     * @return boolean
+     */
+	private boolean hasGroup() {
+		if(this.group == null)
+			return false;
+		else if(this.group.isEmpty())
+			return false;
+		else return true;
+	}
+
+	/**
+	 * returns true if field has a reference field
+	 * @return boolean
+	 */
+	private boolean hasRefField() {
+		if(this.refField == null)
+			return false;
+		else if(this.refField.isEmpty())
+			return false;
+		else return true;
+	}
+
+	/**
+	 * duplicates field with entered port type
+	 */
+    public TransformField(TransformField f, PortType portType) {
+    	this.name = f.getName();
+    	this.dataType =  f.getDataType();
+    	this.precision = f.getPrecision();
+    	this.scale = f.getScale();
+    	this.portType = portType;
+    	
+    }
+    
+	/**
+	 * duplicates field with new port type and name
+	 */
+    public TransformField(TransformField f, PortType portType, String name) {
+    	this.name = name;
+    	this.dataType =  f.getDataType();
+    	this.precision = f.getPrecision();
+    	this.scale = f.getScale();
+    	this.portType = portType;
+    	if ( f.hasExpression())
+    		this.setExpression(f.getExpression());
+    	
+    }
+    
+    /**
+     *	constructor made specifically for routers, automatically naming with group
+     */
+    public TransformField(Field f, String group, String number) {
+    	// get name and add sent number
+    	String newName = f.getName()+ number;    	
+    	this.name = newName;
+    	
+    	// copy these strings
+    	this.dataType =  f.getDataType();
+    	this.precision = f.getPrecision();
+    	this.scale = f.getScale();
+    	
+    	// put group, refer to param field, and make output field.
+    	this.group = group;
+    	this.refField = f.getName();
+    	this.portType = PortType.OUTPUT;
+    }
+    /**
+     * 
+     * @param name
+     * @param dataType
+     * @param precision
+     * @param scale
+     * @param portType
+     */
     public TransformField( String name, String dataType, int precision, int scale, PortType portType ) {
     	this.name = name;
     	this.dataType = dataType;
     	this.precision = precision;
     	this.scale = scale;
     	this.portType = portType;
+    	
     }
     
-    private ArrayList<TransformFieldAttr> transformFieldAttrList;
+    public TransformField(Field f) {
+    	this.name = f.getName();
+    	this.dataType =  f.getDataType();
+    	this.precision = f.getPrecision();
+    	this.scale = f.getScale();
+    	
+	}
 
+	private ArrayList<TransformFieldAttr> transformFieldAttrList;
+
+    
+    // Getters and setters
 	public String getDataType() {
 		return dataType;
 	}
@@ -268,5 +404,114 @@ public class TransformField implements Field, Cloneable {
 		} catch ( CloneNotSupportedException e ) {
 			throw new RuntimeException(e);
 		}
-	}	
+	}
+
+	public boolean isOutput() {
+		if(PortType.isOutputPort(this.portType))
+			return true;
+		else return false;
+	}
+
+	public void makeInputField() {
+		this.portType = PortType.INPUT;
+		this.group = "INPUT";
+		
+	}
+
+	public void makeFinalDateTime() {
+		if(this.name.endsWith("_TXT") && this.name.contains("DT_TM"))//isNotText(this.name))
+			this.name = this.name.substring(0, this.name.length()-4);
+		if(this.name.contains("DT_TM")){
+			this.dataType = "date/time";
+			this.precision = 19;
+		}
+		
+	}
+
+/*	private boolean isNotText(String fieldName) {
+		if(fieldName.startsWith("ORG_MRN")||fieldName.startsWith("COMM_MRN")||fieldName.startsWith("FINANCIAL_NBR"))
+			return false;
+		else return true;
+	}*/
+
+	public void makeFinalNumber() {
+		if(this.name.endsWith("_IND1") || this.dataType.equals("decimal") || this.name.endsWith("_CD1") 
+				|| this.name.endsWith("_FLAG1") || this.name.endsWith("_MASK1")
+				|| this.name.endsWith("_CNT1") || this.name.endsWith("_ID1") || this.dataType.equals("number")
+				|| this.name.endsWith("_SEQ1") || this.name.endsWith("_NBR1") ){
+			this.dataType = "double";
+			this.precision = 15;
+		}
+		
+	}
+
+	public void makeFinalString() {
+		if(this.name.startsWith("SRC_"))
+			;
+			//this.name = this.name.substring(4);
+	}
+
+	public void truncateName(int i) {
+		this.name = this.name.substring(0, this.name.length()-i);
+		
+	}
+
+	public SourceField toSourceField() {
+		String srcDataType = this.getDataType();
+		int srcPrecision = this.getPrecision();
+		int srcScale = this.getScale();
+		
+		if( srcDataType.equalsIgnoreCase("double") || srcDataType.equalsIgnoreCase("integer") || srcDataType.equalsIgnoreCase("bigint") 
+				|| srcDataType.equalsIgnoreCase("real") || srcDataType.equalsIgnoreCase("decimal") || srcDataType.equalsIgnoreCase("small integer"))
+			srcDataType = new String("number");
+		else if( srcDataType.equalsIgnoreCase("date/time")) {
+			srcDataType = new String("string");
+			srcPrecision = 20;
+			srcScale = 0;
+		}
+		SourceField srcField = new SourceField(this.getName(), srcDataType, srcPrecision, srcScale);
+		return srcField;
+	}
+
+	public boolean needsNumConvert() {
+		//TODO remove prints
+		//System.out.println(this.name);
+		if( !this.name.startsWith("HEALTH_SYSTEM_") && (this.name.matches(".*_ID\\d") || this.name.matches(".*_IND\\d") || this.name.matches(".*_CD\\d") || this.name.matches(".*_FLAG\\d") || this.name.matches(".*_MASK\\d")
+				|| this.name.matches(".*_CNT\\d") || this.name.matches(".*_NBR\\d") ) )
+				return true;
+		else return false;
+	}
+
+	public void printField() {
+		System.out.println("NAME = " + this.name);
+		System.out.println("DATATYPE = " + this.dataType);
+	}
+
+	public void printFieldwithComma() {
+		System.out.print(this.name + ",");
+		
+	}
+
+	public void printFieldwithoutComma() {
+		System.out.print(this.name);
+		
+	}
+
+	public boolean isDateTime() {
+		if(this.getDataType().toLowerCase().equals("date"))
+			return true;
+		else return false;
+	}
+
+	public boolean isNumber() {
+		if(this.getDataType().toLowerCase().equals("number") || this.getDataType().toLowerCase().equals("float"))
+			return true;
+		else return false;
+	}
+	
+	public boolean isVarchar() {
+		if(this.getDataType().toLowerCase().equals("varchar2"))
+			return true;
+		else return false;
+	}
 }

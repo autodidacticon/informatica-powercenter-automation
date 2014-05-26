@@ -16,6 +16,7 @@ public class Repository implements Cloneable {
 	
 	public Repository( String name ) {
 		this.name = name;
+		this.codePage = "Latin1";
 	}
 	
 	public String getCodePage() {

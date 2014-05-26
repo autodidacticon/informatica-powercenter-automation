@@ -2,6 +2,7 @@ package net.orangemile.informatica.powercenter.domain.constant;
 
 public enum InstanceType {
 	
+	FILTER("Filter"),
 	SOURCE_DEFINITION("Source Definition"),
 	SOURCE_QUALIFIER("Source Qualifier"), 		
 	EXPRESSION("Expression"),
@@ -11,7 +12,8 @@ public enum InstanceType {
 	AGGREGATOR("Aggregator"),
 	JOINER("Joiner"),
 	LOOKUP_PROCEDURE("Lookup Procedure"),
-	TARGET_DEFINITION("Target Definition");
+	TARGET_DEFINITION("Target Definition"), 
+	NORMALIZER("Normalizer");
 	
 	private String instanceType;
 

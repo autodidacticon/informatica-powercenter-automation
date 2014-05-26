@@ -1,5 +1,8 @@
 package net.orangemile.informatica.powercenter.domain;
 
+/**
+ * This class represents the connection between two mapping elements across a sing port.
+ */
 public class Connector implements Cloneable {
 
 	private String fromInstance;
@@ -11,6 +14,15 @@ public class Connector implements Cloneable {
 	
 	public Connector() {}
 	
+	/**
+	 * Provide the to and from values in string form.
+	 * @param fromField
+	 * @param fromInstance
+	 * @param fromInstanceType
+	 * @param toField
+	 * @param toInstance
+	 * @param toInstanceType
+	 */
 	public Connector(String fromField, String fromInstance, String fromInstanceType,  
 			String toField, String toInstance, String toInstanceType ) {
 		this.fromInstance = fromInstance;

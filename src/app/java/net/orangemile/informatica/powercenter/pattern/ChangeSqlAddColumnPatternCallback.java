@@ -1,7 +1,5 @@
 package net.orangemile.informatica.powercenter.pattern;
 
-import org.apache.log4j.Logger;
-
 import net.orangemile.informatica.powercenter.domain.Box;
 import net.orangemile.informatica.powercenter.domain.Field;
 import net.orangemile.informatica.powercenter.domain.TableAttribute;
@@ -13,9 +11,6 @@ import net.orangemile.informatica.powercenter.domain.Transformation;
  */
 public class ChangeSqlAddColumnPatternCallback implements AddColumnPatternCallback {
 
-	// logger
-	private static final Logger log = Logger.getLogger( ChangeSqlAddColumnPatternCallback.class );
-	
 	/**
 	 * Called by the AddColumnPatternCallback to change the transformation sql
 	 */
@@ -24,10 +19,8 @@ public class ChangeSqlAddColumnPatternCallback implements AddColumnPatternCallba
 			Transformation tran = (Transformation) box;
 			TableAttribute sqlQuery = tran.getTableAttribute("Sql Query");
 			if (sqlQuery != null) {
-				log.debug("Original Sql: " + sqlQuery.getValue());
 				String sql = changeSql(sqlQuery.getValue(), 0, newField, exampleFieldName );
 				sqlQuery.setValue(sql);
-				log.debug("New Sql: " + sqlQuery.getValue());
 			}
 		}
 	}

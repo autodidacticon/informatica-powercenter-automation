@@ -43,7 +43,7 @@ public class Transformation implements Box, Cloneable {
 		this.type = type.getInstanceType();
 	}
 	
-	public List<? extends Field> getInputPorts() {
+	public List<TransformField> getInputPorts() {
 		ArrayList<TransformField> fields = new ArrayList<TransformField>();
 		for ( TransformField field : transformFieldList ) {
 			if ( PortType.isInputPort(field.getPortType()) ) {
@@ -53,7 +53,7 @@ public class Transformation implements Box, Cloneable {
 		return fields;
 	}
 
-	public List<? extends Field> getOutputPorts() {
+	public List<TransformField> getOutputPorts() {
 		ArrayList<TransformField> fields = new ArrayList<TransformField>();
 		for ( TransformField field : transformFieldList ) {
 			if ( PortType.isOutputPort(field.getPortType()) ) {
@@ -187,7 +187,7 @@ public class Transformation implements Box, Cloneable {
 		return sourceFieldList;
 	}
 
-	public void setSourceFieldList(ArrayList<SourceField> sourceFieldList) {
+	public void setSourceFieldList(List<SourceField> sourceFieldList) {
 		this.sourceFieldList = sourceFieldList;
 	}
 
@@ -238,6 +238,14 @@ public class Transformation implements Box, Cloneable {
 		transformFieldList.add( transformField );
 	}
 	
+	public void addTransformFields( List<TransformField> transformFields ){
+		if ( transformFieldList == null ) {
+			transformFieldList = new ArrayList<TransformField>();
+		}
+		for( TransformField field : transformFields ) {
+			transformFieldList.add(field);
+		}
+	}
 	/**
 	 * Adds the given transform field after the given field
 	 * @param transformField

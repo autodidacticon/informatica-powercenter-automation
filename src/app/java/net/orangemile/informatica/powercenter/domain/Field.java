@@ -1,5 +1,8 @@
 package net.orangemile.informatica.powercenter.domain;
 
+/**
+ * Interface contains the basic methods used by ports.
+ */
 public interface Field {
 
 	public String getName();

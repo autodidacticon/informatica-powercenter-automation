@@ -2,8 +2,6 @@ package net.orangemile.informatica.powercenter.pattern;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
 import net.orangemile.informatica.powercenter.DataTypeResolver;
 import net.orangemile.informatica.powercenter.domain.*;
 import net.orangemile.informatica.powercenter.domain.constant.InstanceType;
@@ -17,9 +15,6 @@ import net.orangemile.informatica.powercenter.domain.constant.InstanceType;
  */
 public class AddColumnPattern {
 
-	// logging
-	private static final Logger log = Logger.getLogger( AddColumnPattern.class );
-	
 	protected Powermart powermart;
 	protected String exampleFieldName;
 	protected String endBoxName;
@@ -76,8 +71,6 @@ public class AddColumnPattern {
 	 */
 	protected void recursiveWalk( List<Connector> connectorList ) {
 		for ( Connector c : connectorList ) {
-			log.debug( c.getFromField() + ":" + c.getFromInstance() + ":" + c.getFromInstanceType() + " -> " +
-					c.getToField() + ":" + c.getToInstance() + ":" + c.getToInstanceType() + " -> "		);
 			if ( c.getFromInstanceType().equalsIgnoreCase(InstanceType.SOURCE_DEFINITION.getInstanceType()) ) {				
 				Instance srcInstance = mapping.getInstance( c.getFromInstance() );
 				Source src = folder.getSource( srcInstance.getTransformationName() );										

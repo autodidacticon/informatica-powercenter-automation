@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.orangemile.informatica.powercenter.domain.constant.BoxType;
+import net.orangemile.informatica.powercenter.domain.constant.InstanceType;
 
-public class Instance implements Cloneable {
+public class Instance implements Box, Cloneable {
 
 	private String name;
 	private String description;
@@ -28,6 +29,23 @@ public class Instance implements Cloneable {
 		this.transformationName = transformationName;
 		this.transformationType = transformationType;
 		this.type = type;
+	}
+	
+	/**
+	 * constructor for reusable instances
+	 * @param name
+	 * @param transformationName
+	 * @param transformationType
+	 * @param type
+	 * @param reusable
+	 */
+	public Instance(String name, String transformationName, String transformationType,
+			BoxType type, Boolean reusable ) {
+		this.name = name;
+		this.transformationName = transformationName;
+		this.transformationType = transformationType;
+		this.type = type;
+		this.reusable = reusable;
 	}
 	
 	public List<InitProp> getInitPropList() {
@@ -96,6 +114,8 @@ public class Instance implements Cloneable {
 	public BoxType getType() {
 		return type;
 	}
+	
+
 	public void setType(BoxType type) {
 		this.type = type;
 	}
@@ -135,5 +155,33 @@ public class Instance implements Cloneable {
 		} catch ( CloneNotSupportedException e ) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@Override
+	public List<? extends Field> getInputPorts() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	// override this function to get instances to implement
+	// Box class, and be able to use connect method from Informatica
+	// Support class
+	@Override
+	public String getInstanceType() {
+		
+		
+		// workaround added by Duane Crowe:
+		//	if it is a transformation, the transformation type needs to be
+		//  accessed here as the writer will otherwise return "Transformation"
+		String instanceType =  this.type.toString();
+		if(instanceType.equals("TRANSFORMATION") || true)
+			return this.transformationType;
+		else return instanceType;
+	}
+
+	@Override
+	public List<? extends Field> getOutputPorts() {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 }

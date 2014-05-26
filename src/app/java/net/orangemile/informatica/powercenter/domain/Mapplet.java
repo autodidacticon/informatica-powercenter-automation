@@ -1,6 +1,7 @@
 package net.orangemile.informatica.powercenter.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Mapplet implements Cloneable {
 
@@ -16,6 +17,7 @@ public class Mapplet implements Cloneable {
 	private ArrayList<Connector> connectorList;
 	private ArrayList<MappingVariable> mappingVariableList;
 	private ArrayList<MetaDataExtension> metaDataExtensionList;
+	private ArrayList<TableAttribute> tableAttributeList;
 	
 	public ArrayList<Connector> getConnectorList() {
 		return connectorList;
@@ -126,5 +128,11 @@ public class Mapplet implements Cloneable {
 		} catch ( CloneNotSupportedException e ) {
 			throw new RuntimeException(e);
 		}
+	}
+	public void setTableAttributeList(ArrayList<TableAttribute> tableAttributeList) {
+		this.tableAttributeList = tableAttributeList;
+	}
+	public ArrayList<TableAttribute> getTableAttributeList() {
+		return tableAttributeList;
 	}	
 }

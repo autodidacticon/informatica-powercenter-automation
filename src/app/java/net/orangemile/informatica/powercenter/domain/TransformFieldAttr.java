@@ -5,6 +5,15 @@ public class TransformFieldAttr implements Cloneable {
 	private String name;
 	private String value;
 	
+	public TransformFieldAttr(){
+		name = new String();
+		value = new String();
+	}
+	public TransformFieldAttr( String name, String value ){
+		this.name = name;
+		this.value = value;
+	}
+	
 	public String getName() {
 		return name;
 	}

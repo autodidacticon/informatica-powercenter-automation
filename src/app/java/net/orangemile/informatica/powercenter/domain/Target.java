@@ -5,6 +5,8 @@ import java.util.List;
 
 import net.orangemile.informatica.powercenter.domain.constant.InstanceType;
 
+import com.cerner.powerinsight.edw.mappinggenerator.powercenter.FieldSet;
+
 public class Target implements Box, Cloneable {
 
 	private String name;
@@ -34,6 +36,37 @@ public class Target implements Box, Cloneable {
 		this.name = name;
 	}
 	
+	public Target(String name, FieldSet fieldSet){
+		this.name = name;
+		this.targetFieldList = new ArrayList<TargetField>();
+		this.addSet(fieldSet.getFieldList());
+		this.databaseType = "Oracle";
+		
+	}
+	
+	private void addSet(ArrayList<TransformField> fieldList){
+		for(int i=0; i<fieldList.size(); i++){
+			TransformField trnsField = fieldList.get(i);
+			TargetField tgtField = new TargetField("", "", 0, 0);
+			tgtField.setName(trnsField.getName());
+			tgtField.setDataType(tgtDataConvert(trnsField.getDataType()));
+			
+			if(tgtField.getDataType().equals("date")) tgtField.setPrecision(19);
+			else tgtField.setPrecision(trnsField.getPrecision());
+			
+			
+			this.targetFieldList.add(tgtField);
+		}
+		
+	}
+	
+	private String tgtDataConvert(String dataType) {
+		if(dataType.equals("date/time")) return "date";
+		else if(dataType.equals("double")) return "number";
+		else if(dataType.equals("string")) return "varchar2";
+		else return dataType;
+	}
+
 	public List<? extends Field> getInputPorts() {
 		return targetFieldList;
 	}
@@ -184,7 +217,7 @@ public class Target implements Box, Cloneable {
 			throw new RuntimeException("TargetFieldList is null");
 		}
 		for ( int i=0;i<targetFieldList.size();i++) {
-			System.out.println( targetFieldList.get(i).getName());
+			//System.out.println( targetFieldList.get(i).getName());
 			if ( targetFieldList.get(i).getName().equalsIgnoreCase(targetFieldName)) {
 				targetFieldList.add(i+1,targetField);
 				return;

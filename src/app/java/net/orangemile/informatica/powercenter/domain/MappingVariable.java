@@ -14,6 +14,18 @@ public class MappingVariable implements Cloneable {
 	private Boolean userDefined;
 	private Boolean isParam;
 	
+	public MappingVariable(){
+	}
+	
+	public MappingVariable(String name, String precision, String defaultValue){
+		this.name = name;
+		this.dataType = "string";
+		this.isParam = true;
+		this.precision = precision;
+		this.scale = "0";
+		this.defaultValue = defaultValue;
+	}
+	
 	public AggregateFunction getAggFunction() {
 		return aggFunction;
 	}
