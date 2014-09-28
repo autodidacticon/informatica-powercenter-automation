@@ -1,7 +1,7 @@
 informatica-powercenter-automation
 ==================================
 
-Automation library for the Informatica PowerCenter
+Automation library for Informatica PowerCenter
 
 
-**Note: this a clone of https://code.google.com/p/informatica-powercenter-automation/ until the original authors publish on github
+Originally this was a clone of https://code.google.com/p/informatica-powercenter-automation/, however the original project's authors are unreachable and development now occurs here.
